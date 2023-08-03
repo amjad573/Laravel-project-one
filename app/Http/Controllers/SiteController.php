@@ -6,23 +6,32 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    function home()
+    function index()
     {
-        return ('home page');
+        $name = "Amjad Isleem";
+        $desc = "This My Website And Profile";
+        return view('site1.index')->with([
+            'name' => $name,
+            'desc' => $desc
+        ]);
     }
 
     function about()
     {
-        return ('about page');
+        return view('site1.about');
     }
 
-    function contact($name)
+    function post()
     {
-        return route('contact', [$name]);
+        return view('site1.post');
     }
 
-    function service()
+    function contact()
     {
-        return ('service page');
+        return view('site1.contact');
+    }
+    function master()
+    {
+        return view('site1.master');
     }
 }

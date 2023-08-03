@@ -18,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [SiteController::class, 'Home'])->name('home');
-Route::get('/about', [SiteController::class, 'About'])->name('about');
-Route::get('/contact/{name}', [SiteController::class, 'Contact'])->name('contact');
-Route::get('/service', [SiteController::class, 'Service'])->name('service');
+Route::get('/index', [SiteController::class, 'index'])->name('index');
+Route::get('/about', [SiteController::class, 'about'])->name('about');
+Route::get('/post', [SiteController::class, 'post'])->name('post');
+Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
+Route::post('/contact', [SiteController::class, 'contact-data'])->name('contact-data');
