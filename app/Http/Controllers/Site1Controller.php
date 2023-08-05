@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class Site1Controller extends Controller
 {
     function index()
     {
@@ -29,9 +29,5 @@ class SiteController extends Controller
     function contact()
     {
         return view('site1.contact');
-    }
-    function master()
-    {
-        return view('site1.master');
     }
 }
