@@ -16,6 +16,9 @@ class FormsController extends Controller
         // dd($request->all());
         // dd($request->input('yourname'));
         // dd($request->yourname);
+        $request->validate([
+            'yourname' => 'required | string | min:2'
+        ]);
 
         $name = $request->yourname;
         return "Welcome $name ";
