@@ -16,9 +16,33 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="text-center">Add Posts</h1>
-            <a href="" class="btn btn-dark w-25">Add New Post</a>
+            <a href="{{ route('posts.create') }}" class="btn btn-dark w-25">Add New Post</a>
         </div>
+        <div class="my-3">
+            <form action="{{ route('posts.index') }}" method="GET">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" name="s" class="form-control" placeholder="Search About Any Post..."
+                            id="">
+                    </div>
 
+                    <div class="col-md-2">
+                        <select name="count" id="" class="form-select">
+                            <option {{ request()->count == 10 ? 'selected' : '' }} value="10">10</option>
+                            <option {{ request()->count == 15 ? 'selected' : '' }} value="15">15</option>
+                            <option {{ request()->count == 20 ? 'selected' : '' }} value="20">20</option>
+                            <option {{ request()->has('count') ? '' : 'selected' }}
+                                {{ request()->count == 25 ? 'selected' : '' }} value="25">25</option>
+                            <option {{ request()->count == 'all' ? 'selected' : '' }} value="all">All</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <table class="table table-bordered table-striped table-hover mt-3">
             <tr class="table-dark">
                 <th>ID</th>
@@ -42,7 +66,9 @@
                 </tr>
             @endforeach
         </table>
-        {{ $posts->links() }}
+
+        {{ $posts->appends($_GET)->links() }}
+
     </div>
 </body>
 

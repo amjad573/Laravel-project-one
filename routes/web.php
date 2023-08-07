@@ -47,4 +47,7 @@ Route::post('form3', [FormsController::class, 'form3_data'])->name('form3_data')
 Route::get('form4', [FormsController::class, 'form4'])->name('form4');
 Route::post('form4', [FormsController::class, 'form4_data'])->name('form4_data');
 
-Route::get('post', [PostsController::class, 'index'])->name('post');
+Route::get('post', [PostsController::class, 'index'])->name('posts.index');
+
+Route::get('post/create', [PostsController::class, 'create'])->name('posts.create');
+Route::post('post/store', [PostsController::class, 'store'])->name('posts.store');
