@@ -16,11 +16,11 @@
         {{-- Validation Code --}}
         @if ($errors->any())
             <div class="alert alert-danger">
-                @foreach ($errors->all() as $e)
-                    <ul>
-                        <li>{{ $e }}!</li>
-                    </ul>
-                @endforeach
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}!</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
         {{-- End Validation Code --}}

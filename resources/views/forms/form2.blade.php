@@ -10,18 +10,23 @@
         @csrf
         <div class="mb-3">
             <label for="name">Name</label>
-            <input class="w-100 form-control" type="text" name="yourname" placeholder="Your Name!" id="name" />
+            <input class="w-100 form-control" type="text" name="yourname" placeholder="Your Name!" id="name"
+                value="{{ old('yourname') }}" />
         </div>
         <div class="mb-3">
             <label for="email">Email</label>
-            <input class="w-100 form-control" type="text" name="youremail" placeholder="Your Email!" id="email" />
+            <input class="w-100 form-control" type="text" name="youremail" placeholder="Your Email!" id="email"
+                value="{{ old('youremail') }}" />
         </div>
 
 
         <div class="mb-3">
-            <label for="">Gender</label><br>
-            <label><input type="radio" name="yourgender" value="Male" id="">Male</label><br>
-            <label><input type="radio" name="yourgender" value="Femle" id="">Female</label>
+            {{ old('yourgender') }}
+            <label>Gender</label><br>
+            <label><input type="radio" {{ old('yourgender' == 'Female' ? 'checked' : '') }} name="yourgender"
+                    value="Male">Male</label><br>
+            <label><input type="radio" {{ old('yourgender' == 'Female' ? 'checked' : '') }} name="yourgender"
+                    value="Femle">Female</label>
         </div>
 
         <div class="mb-3">

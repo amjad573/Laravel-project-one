@@ -20,7 +20,7 @@
             <input class=" mb-3 form-control @error('yourpassword') is-invalid @enderror "
                 type="password"placeholder="Your Password!!" name="yourpassword" autocomplete="new-password" />
             @error('yourpassword')
-                <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger invalid-feedback">{{ $message }}</small>
             @enderror
         </div>
         <button class="w-100 btn btn-success">Login</button>

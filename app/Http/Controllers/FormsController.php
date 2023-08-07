@@ -59,4 +59,22 @@ class FormsController extends Controller
 
         dd($request->all());
     }
+    function form4()
+    {
+        return view('forms.form4');
+    }
+    function form4_data(Request $request)
+    {
+
+        $request->validate([
+            'yourname' => 'required | string | min:4',
+            'yourcv' => 'required | file | mimes:pdf'
+        ]);
+        // files Upload
+        $name = rand() . time() . $request->file('yourcv')->getClientOriginalName();
+
+        $request->file('yourcv')->move(public_path('uploads'), $name);
+        // file upload
+        return 'Done';
+    }
 }
