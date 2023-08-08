@@ -44,6 +44,14 @@ class PostsController extends Controller
             'body' => $request->body
         ]);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Post Created!');
+    }
+
+    function destroy($id)
+    {
+        // return $id;
+        Post::destroy($id);
+
+        return redirect()->route('posts.index')->with('success', 'Post Deleated!');
     }
 }

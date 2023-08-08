@@ -41,12 +41,20 @@
                         <button class="btn btn-success w-100">Search</button>
                     </div>
                 </div>
+                <div class="container mt-3">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+                </div>
             </form>
         </div>
         <table class="table table-bordered table-striped table-hover mt-3">
             <tr class="table-dark">
                 <th>ID</th>
                 <th>Title</th>
+                {{-- <th>Body</th> --}}
                 <th>Created At</th>
                 <th>Upated At</th>
                 <th>Actions</th>
@@ -55,13 +63,19 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
+                    {{-- <td>{!! $post->body !!}</td> --}}
                     <td>{{ $post->created_at->format('Y, M, d | H:s:i a') }}</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
+                        <form class="d-inline" action="{{ route('posts.destroy', $post->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button onclick="return confirm( 'Are you sure?!')" class="btn btn-danger btn-sm ">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -70,6 +84,21 @@
         {{ $posts->appends($_GET)->links() }}
 
     </div>
+
+    <script>
+        setTimeout(() => {
+            document.querySelector('.alert').style.display = "none";
+        }, 4000);
+
+        document.querySelector('.delete-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (confirm("Are You Sure you want to delete this item?")) {
+                e.target.submit();
+            }
+        })
+    </script>
+
+
 </body>
 
 </html>

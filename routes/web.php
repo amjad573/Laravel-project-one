@@ -51,3 +51,5 @@ Route::get('post', [PostsController::class, 'index'])->name('posts.index');
 
 Route::get('post/create', [PostsController::class, 'create'])->name('posts.create');
 Route::post('post/store', [PostsController::class, 'store'])->name('posts.store');
+
+Route::delete('post/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');

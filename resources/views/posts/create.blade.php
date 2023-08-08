@@ -49,9 +49,27 @@
                     <button class="btn btn-success px-5">Add Post</button>
                 </div>
             </form>
-
-
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.1/tinymce.min.js"
+            integrity="sha512-UAE3iwk1y0A7jx6PWZWng/s/7G+W0dfeYK8FwSvfj7Kx5EC6evlT7DJ9EDsAsPToEVi4pTaXKNedEMXq1JEK8g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | ' +
+                    'bold italic backcolor | alignleft aligncenter ' +
+                    'alignright alignjustify | bullist numlist outdent indent | ' +
+                    'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+            });
+        </script>
 </body>
 
 </html>
