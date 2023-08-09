@@ -4,6 +4,7 @@ use App\Http\Controllers\FormsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\Site2Controller;
 use App\Http\Controllers\Site1Controller;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,3 +54,9 @@ Route::get('post/create', [PostsController::class, 'create'])->name('posts.creat
 Route::post('post/store', [PostsController::class, 'store'])->name('posts.store');
 
 Route::delete('post/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
+
+Route::get('post/{id}/edit', [PostsController::class, 'edit'])->name('posts.edit');
+
+Route::put('post/{id}/update', [PostsController::class, 'update'])->name('posts.update');
+
+Route::resource('categories', TagsController::class);

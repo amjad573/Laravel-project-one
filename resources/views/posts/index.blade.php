@@ -67,7 +67,8 @@
                     <td>{{ $post->created_at->format('Y, M, d | H:s:i a') }}</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm"><i
+                                class="fa fa-edit" aria-hidden="true"></i>
                         </a>
                         <form class="d-inline" action="{{ route('posts.destroy', $post->id) }}" method="post">
                             @csrf

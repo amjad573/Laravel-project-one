@@ -36,12 +36,18 @@ class PostsController extends Controller
     {
         $request->validate([
             'title' => 'required|min:5|max:40',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpng'
         ]);
+
+        $image_name = rand() . '_' . time() . '_' . $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('uploads'), $image_name);
 
         Post::create([
             'title' => $request->title,
-            'body' => $request->body
+            'body' => $request->body,
+            'image' => $image_name,
+
         ]);
 
         return redirect()->route('posts.index')->with('success', 'Post Created!');
@@ -53,5 +59,35 @@ class PostsController extends Controller
         Post::destroy($id);
 
         return redirect()->route('posts.index')->with('success', 'Post Deleated!');
+    }
+
+    function edit($id)
+    {
+        $post = Post::find($id);
+
+        return view('posts.edit', compact('post'));
+    }
+
+    function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|min:5|max:40',
+            'body' => 'required',
+            'image' => 'nullable|image|mimes:png,jpg,jpng'
+        ]);
+        $post = Post::find($id);
+        $image_name = $post->image;
+
+        if ($request->hasFile('image')) {
+            $image_name = rand() . '_' . time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('uploads'), $image_name);
+        }
+        $post->update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'image' => $image_name
+        ]);
+
+        return redirect()->route('posts.index')->with('success', 'Post Updated!');
     }
 }

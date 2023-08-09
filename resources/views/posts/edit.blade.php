@@ -15,25 +15,17 @@
 <body>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="text-center">Add New Post</h1>
+            <h1 class="text-center">Edit Post: <span>{{ $post->title }}</span></h1>
             <a href="{{ route('posts.index') }}" class="btn btn-dark w-25">All Post</a>
         </div>
         <div class="my-3">
-            {{-- @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif --}}
-            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="mb-3">
                     <label>Title</label>
                     <input type="text" name="title" class="form-control @error('title')is-invalid @enderror"
-                        placeholder="Title" value="{{ old('title') }}" id="">
+                        placeholder="Title" value="{{ old('title', $post->title) }}" id="">
                     @error('title')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -44,16 +36,17 @@
                     @error('image')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <img class="mt-2" width="150" src="{{ asset('uploads/' . $post->image) }}" alt="">
                 </div>
                 <div class="mb-3">
                     <label>Body</label>
-                    <textarea rows="6" name="body" class="form-control @error('title')is-invalid @enderror" placeholder="Body">{{ old('body') }}</textarea>
+                    <textarea rows="6" name="body" class="form-control @error('title')is-invalid @enderror" placeholder="Body">{{ old('body', $post->body) }}</textarea>
                     @error('body')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-success px-5">Add Post</button>
+                    <button class="btn btn-success px-5">Update Post</button>
                 </div>
             </form>
         </div>
