@@ -14,15 +14,7 @@
     <div class="container mt-5">
         <h1 class="text-center">@yield('headers')</h1>
         {{-- Validation Code --}}
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}!</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('forms.errors')
         {{-- End Validation Code --}}
 
         @yield('forms')
