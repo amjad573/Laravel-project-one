@@ -3,6 +3,7 @@
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RelationController;
 use App\Http\Controllers\Site2Controller;
 use App\Http\Controllers\Site1Controller;
 use App\Http\Controllers\TagsController;
@@ -68,3 +69,10 @@ Route::get('send-mail', [MailController::class, 'send']);
 
 Route::get('contact_us', [MailController::class, 'contact_us'])->name('contact_us');
 Route::post('contact_us_data', [MailController::class, 'contact_us_data'])->name('contact_us_data');
+
+Route::get('one_to_one', [RelationController::class, 'one_to_one']);
+
+Route::get('one_to_many', [RelationController::class, 'one_to_many']);
+Route::post('one_to_many', [RelationController::class, 'one_to_many_data'])->name('one_to_many_data');
+
+Route::get('many_to_many', [RelationController::class, 'many_to_many']);

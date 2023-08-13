@@ -29,7 +29,6 @@ class MailController extends Controller
         $image_name = rand() . '_' . time() . '_' . $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads'), $image_name);
 
-
         Mail::to('admail@gmail.com')->send(new contactUsMail($request->except('_token'), $image_name));
     }
 }
